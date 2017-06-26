@@ -3,10 +3,10 @@ server:
   compression:
     enabled: true
     mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json,application/json
-    min-response-size: 1024
 
-viet:
-  child1: 123
+database:
+  code: WIKI
+  url: https://www.quandl.com/api/v3/datasets/%s/%s.json
 
 logging:
   file: C:\log.txt

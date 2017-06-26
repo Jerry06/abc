@@ -5,7 +5,7 @@
 							http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.0.xsd">
 	<cache alias="tickerCache">
 		<expiry>
-			<ttl unit="seconds">600</ttl>
+			<ttl unit="seconds">1800</ttl>
 
 		</expiry>
 		<heap unit="entries">200</heap>

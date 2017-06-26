@@ -47,7 +47,7 @@ public class TickerDeserializer extends JsonDeserializer<Ticker> {
                     info.setClosePrice(asDouble(arrNode.get(ticker.getColumnMap().get(Constants.STOCK_CLOSE))));
                     info.setHighPrice(asDouble(arrNode.get(ticker.getColumnMap().get(Constants.STOCK_HIGH))));
                     info.setLowPrice(asDouble(arrNode.get(ticker.getColumnMap().get(Constants.STOCK_LOW))));
-                    ticker.getStockInfos().add(info);
+                    ticker.getStockList().add(info);
                 }
             }
         }

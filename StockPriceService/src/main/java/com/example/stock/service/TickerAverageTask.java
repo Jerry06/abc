@@ -16,27 +16,20 @@ import java.util.concurrent.Callable;
 public class TickerAverageTask implements Callable<TickerAverage> {
 
     private String tickerSymbol;
-    private TickerService stockService;
+    private TickerService tickerService;
     private LocalDate startDate;
 
-    public TickerAverageTask(String tickerSymbol, TickerService stockService, LocalDate startDate) {
+    public TickerAverageTask(String tickerSymbol, TickerService tickerService, LocalDate startDate) {
         this.tickerSymbol = tickerSymbol;
-        this.stockService = stockService;
+        this.tickerService = tickerService;
         this.startDate = startDate;
     }
 
     @Override
     public TickerAverage call() throws InvalidTickerException, NoDataException {
         System.out.println("Start TickerAverageTask with ticket " + tickerSymbol + " : " + LocalDateTime.now());
-        Ticker ticker = stockService.getTicker(tickerSymbol);
-        OptionalDouble average = ticker.getStockInfos().parallelStream()
-                .filter(p -> !startDate.isAfter(p.getDate()))
-                .limit(200)
-                .mapToDouble(p -> p.getClosePrice()).average();
-        if (average.isPresent()) {
-            return new TickerAverage(tickerSymbol, average.getAsDouble());
-        }
+        TickerAverage tickerAverage = tickerService.getAverage(tickerSymbol, startDate, 200);
         System.out.println("End TickerAverageTask with ticket " + tickerSymbol + " : " + LocalDateTime.now());
-        return null;
+        return tickerAverage;
     }
 }

@@ -28,5 +28,5 @@ public class Ticker {
     private LocalDate startDate;
     private LocalDate endDate;
     private Map<String, Integer> columnMap = new HashMap<>();
-    private List<StockInfo> stockInfos = new ArrayList<>();
+    private List<StockInfo> stockList = new ArrayList<>();
 }
